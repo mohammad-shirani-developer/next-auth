@@ -1,8 +1,9 @@
 "use server";
 import { jwtDecode } from "jwt-decode";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { SignInModel } from "../(auth)/_types/auth.types";
 import { JWT, UserResponse, UserSession } from "../_types/auth.types";
+import { decryptSession, encryptSession } from "../utils/session";
 
 export async function signinAction(model: SignInModel) {
   const headerList = headers();
@@ -46,6 +47,15 @@ export async function setAuthCookieAction(user: UserResponse) {
     sessionExpiry: user.sessionExpiry * 1000,
   };
 
-  console.log("decoded" + JSON.stringify(decoded));
-  console.log("session" + JSON.stringify(session));
+  const cookieStore = await cookies();
+  const encryptedSession = await encryptSession(session);
+  const decryptedSession = await decryptSession(encryptedSession);
+  console.log(decryptedSession);
+
+  cookieStore.set("moh-session", JSON.stringify(encryptedSession), {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+    path: "/",
+  });
 }
