@@ -4,8 +4,8 @@
   --clb-c-base-white: #fff;
   --clb-c-base-black: oklch(0 0 0 / 1);
   --clb-c-gray-blue-300: oklch(79.02% 0.0499 278.79);
-  --clb-c-gray-blue-400: oklch(0.60 0.10 276.31 / 1);
-  --clb-c-gray-blue-600: oklch(0.42 0.10 274.88 / 1);
+  --clb-c-gray-blue-400: oklch(0.6 0.1 276.31 / 1);
+  --clb-c-gray-blue-600: oklch(0.42 0.1 274.88 / 1);
   --clb-c-gray-blue-700: oklch(0.39 0.09 274.07 / 1);
   --clb-c-gray-blue-800: oklch(0.32 0.07 274.09 / 1);
   --clb-c-gray-blue-850: oklch(0.26 0.05 274.39 / 1);
@@ -13,12 +13,12 @@
   --clb-c-gray-blue-900: oklch(19.25% 0.0327 274.82);
   --clb-c-blue-600: oklch(0.57 0.21 258.93 / 1);
   --clb-c-primary: oklch(0.57 0.21 258.93 / 1);
-  --clb-c-blue-700: oklch(0.51 0.20 260.89 / 1);
+  --clb-c-blue-700: oklch(0.51 0.2 260.89 / 1);
 
   --clb-c-blue-light-400: oklch(0.76 0.14 232.13 / 1);
   --clb-c-blue-light-500: oklch(0.69 0.15 238.37 / 1);
 
-  --clb-c-g-61-first: oklch(0.58 0.30 308.10 / 1);
+  --clb-c-g-61-first: oklch(0.58 0.3 308.1 / 1);
   --clb-c-g-61-second: oklch(0.59 0.21 273.59 / 1);
   --clb-c-g-61-third: oklch(0.83 0.14 202.84 / 1);
 
@@ -26,10 +26,7 @@
   --clb-c-g-62-second: oklch(0.43 0.27 264.84 / 1);
   --clb-c-g-62-third: oklch(0.83 0.14 202.84 / 1);
 
-
-
-
-  --clb-c-g-82-first: oklch(0.90 0.13 183.40 / 1);
+  --clb-c-g-82-first: oklch(0.9 0.13 183.4 / 1);
   --clb-c-g-82-second: oklch(0.62 0.21 279.99 / 1);
 
   --clb-c-g-gray-first: oklch(0.26 0.05 274.39 / 1);
@@ -44,17 +41,19 @@
 
   --clb-c-rose-500: oklch(0.64 0.21 28.54 / 1);
 
-
   --fade-speed: 0.4s;
 
-  --pattern-fg: color-mix(in oklab, var(--clb-c-gray-blue-800) 10%, transparent);
+  --pattern-fg: color-mix(
+    in oklab,
+    var(--clb-c-gray-blue-800) 10%,
+    transparent
+  );
 }
 
 @theme inline {
   --font-*: initial;
 
   --color-*: initial;
-
 
   --color-white: var(--clb-c-base-white);
   --color-black: var(--clb-c-base-black);
@@ -80,20 +79,17 @@
   --color-error: var(--clb-c-rose-500);
 }
 
-
-
 @layer base {
   body {
-
     @apply bg-secondary-900;
-    font-family: 'yekanbakh';
+    font-family: var(--font-iranyekan);
     color: var(--color-secondary-300);
 
     line-height: var(--text-base--line-height);
     overflow-x: hidden;
   }
 
-  input[type=number] {
+  input[type="number"] {
     -moz-appearance: none;
     appearance: none;
   }
@@ -105,6 +101,4 @@
     margin: 0;
     /* <-- Apparently some margin are still there even though it's hidden */
   }
-
-
 }
